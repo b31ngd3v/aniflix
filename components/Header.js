@@ -10,7 +10,7 @@ export default function Header({ title }) {
         <meta httpEquiv="content-language" content="en" />
         <meta
           name="description"
-          content="Aniflix is a Free anime streaming website which you can watch English Subbed and Dubbed Anime online with No Account and Daily update. WATCH NOW!"
+          content="Aniflix is a free anime streaming website where you can watch English Subbed and Dubbed Anime online with No Account and Daily update. WATCH NOW!"
         />
         <meta
           name="keywords"
