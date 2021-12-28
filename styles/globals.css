@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --plyr-color-main: #0059ff;
+  --plyr-menu-background: rgba(34, 51, 68, 0.9);
+  --plyr-menu-color: rgb(182, 187, 192);
+  --plyr-menu-back-border-color: rgba(156, 163, 175, 0.5);
+  --plyr-menu-back-border-shadow-color: rgba(156, 163, 175, 0);
+}
+
+body {
+  background-color: #101317;
+}
+
+#nprogress .spinner {
+  margin-top: 6px;
+  margin-right: -6px;
+}
+
+.plyr__menu__container::after {
+  border-top: var(--plyr-menu-arrow-size, 4px) solid rgba(34, 51, 68, 0.9) !important;
+}
+
+#disabled {
+  padding: 9px 0px;
+  text-align: center;
+  background-size: 200% auto;
+  color: rgb(156, 163, 175);
+  border-radius: 50px;
+  display: block;
+  width: 126px;
+  background-color: rgb(34, 51, 68);
+}
+
+#disabled:hover {
+  cursor: not-allowed;
+}
+
+#btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #1673ff 0%,
+    #0051e7 31%,
+    #003cff 100%
+  );
+}
+#btn-grad {
+  padding: 9px 0px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 50px;
+  display: block;
+  width: 126px;
+}
+
+#btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+nav {
+  -webkit-box-shadow: 0 10px 18px -6px #101317;
+  -moz-box-shadow: 0 10px 18px -6px #101317;
+  box-shadow: 0 10px 18px -6px #101317;
+}
+
+#suggestions {
+  -webkit-box-shadow: 0px 3px 8px #101317;
+  -moz-box-shadow: 0px 3px 8px #101317;
+  box-shadow: 0px 3px 8px #101317;
+}
+
+#episodes:hover {
+  background-color: #003cff !important;
+}
+
+@media only screen and (max-width: 1300px) {
+  #holder {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1090px) {
+  #holder {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  #sec {
+    margin-left: 46px;
+  }
+}
+
+@media only screen and (max-width: 880px) {
+  body {
+    display: none;
+  }
+}
+
+.plyr--full-ui {
+  max-width: 900px;
+  max-height: 519px;
+  width: 90vw;
+  height: 50.85vw;
+  border-radius: 6px 0 0 6px;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #6f7073 #101317;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #101317;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #6f7073;
+  border-radius: 10px;
+  border: 3px solid #101317;
+}
