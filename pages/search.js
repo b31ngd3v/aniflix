@@ -106,8 +106,8 @@ export async function getServerSideProps(context) {
           url: a[i].find("a").attrs.href.replace("/category", "/info"),
           year: a[i]
             .find("p", "released")
-            .text.replaceAll(" ", "")
-            .replaceAll("\n", "")
+            .text.replace(/ /g, "")
+            .replace(/\n/g, "")
             .replace("Released:", ""),
         };
         response.push(data);
