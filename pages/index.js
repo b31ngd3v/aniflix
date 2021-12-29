@@ -1,9 +1,9 @@
-import { MongoClient } from "mongodb";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import List from "../components/List";
 import Navbar from "../components/Navbar";
+import { hero, favourite, popular } from "../data/data";
 
 export default function Home({ hero, popular, favourite }) {
   return (
@@ -31,19 +31,6 @@ export default function Home({ hero, popular, favourite }) {
 }
 
 export async function getStaticProps() {
-  const client = await MongoClient.connect(process.env.DATABASE_URL);
-  const db = client.db();
-  const popularCollection = db.collection("popular");
-  const popular = await popularCollection
-    .find({}, { projection: { _id: 0 } })
-    .toArray();
-  const favouriteCollection = db.collection("favourite");
-  const favourite = await favouriteCollection
-    .find({}, { projection: { _id: 0 } })
-    .toArray();
-  const heroCollection = db.collection("hero");
-  const hero = await heroCollection.findOne({}, { projection: { _id: 0 } });
-  client.close();
   return {
     props: { hero, popular, favourite },
   };
