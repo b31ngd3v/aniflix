@@ -27,12 +27,9 @@ export default function Info({
   return (
     <>
       <div className="bg-gray-800 ml-9 mr-9 rounded-lg mb-3 flex mt-9">
-        <img
-          src={img}
-          alt=""
-          className="rounded-l-lg"
-          style={{ height: 460 }}
-        />
+        <div style={{ height: 460, minWidth: 331, maxWidth: 331 }}>
+          <img src={img} alt="" className="rounded-l-lg w-full h-full" />
+        </div>
         <div>
           <p
             style={{ fontSize: 24 }}
