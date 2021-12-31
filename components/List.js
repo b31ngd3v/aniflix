@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FaGripLinesVertical } from "react-icons/fa";
 
 export default function List({ pageTitle, data }) {
@@ -30,11 +31,14 @@ export default function List({ pageTitle, data }) {
           return (
             <Link key={index} href={item.url} passHref>
               <div className="bg-gray-800 max-w-min rounded-md w-60 md:mb-5 lg:mb-5 xl:mb-5 mb-3 hover:cursor-pointer">
-                <img
-                  src={item.img}
-                  className="md:h-80 md:w-60 lg:h-80 lg:w-60 xl:h-80 xl:w-60 h-60 w-48 rounded-t-md"
-                  alt=""
-                />
+                <div className="md:h-80 md:w-60 lg:h-80 lg:w-60 xl:h-80 xl:w-60 h-64 w-48 rounded-t-md">
+                  <Image
+                    src={item.img}
+                    width={240}
+                    height={320}
+                    className="rounded-t-md"
+                  />
+                </div>
                 <p
                   id="item-name"
                   className="w-56 truncate font-semibold md:text-base lg:text-base xl:text-base text-sm text-white m-4 mt-2.5 mb-0"
