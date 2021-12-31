@@ -20,8 +20,9 @@ export default function Header({ title }) {
           name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
         />
-        <meta name="apple-mobile-web-app-status-bar" content="#202125" />
-        <meta name="theme-color" content="#202125" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="apple-mobile-web-app-status-bar" content="#101317" />
+        <meta name="theme-color" content="#101317" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
     </>

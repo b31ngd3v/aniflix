@@ -56,13 +56,13 @@ export default function Navbar({ page }) {
   };
   return (
     <>
-      <nav className="px-9 py-2.5 bg-gray-800 fixed w-full top-0 z-10">
+      <nav className="md:px-9 lg:px-9 xl:px-9 pl-3 pr-2 py-2 md:py-2.5 lg:py-2.5 xl:py-2.5 bg-gray-800 fixed w-full top-0 z-10">
         <div className="container flex flex-nowrap justify-between items-center min-w-full">
           <Link href="/" passHref>
             <img
               src="/logo-237x100.png"
               alt="Aniflix"
-              className="hover:cursor-pointer flex rounded-md h-10"
+              className="hover:cursor-pointer flex rounded-md md:h-10 lg:h-10 xl:h-10 h-8 md:mr-0 lg:mr-0 xl:mr-0 mr-8"
             />
           </Link>
           <div className="flex order-2">
@@ -76,8 +76,8 @@ export default function Navbar({ page }) {
                   <svg
                     className={
                       search != ""
-                        ? "w-5 h-5 text-blue-500"
-                        : "w-5 h-5 text-gray-500"
+                        ? "md:w-5 md:h-5 xl:w-5 xl:h-5 lg:w-5 lg:h-5 h-4 w-4 text-blue-500"
+                        : "md:w-5 md:h-5 xl:w-5 xl:h-5 lg:w-5 lg:h-5 h-4 w-4 text-gray-500"
                     }
                     fill="currentColor"
                     viewBox="0 0 20 20"
@@ -98,7 +98,7 @@ export default function Navbar({ page }) {
                 style={{ backgroundColor: "rgb(34, 51, 68)" }}
                 value={search}
                 onChange={handleChange}
-                className="block p-3 pl-10 w-full rounded-lg placeholder-gray-400 text-xs focus:outline-none font-bold text-slate-200"
+                className="block md:p-3 md:pl-10 lg:p-3 lg:pl-10 xl:p-3 xl:pl-10 pl-9 p-2.5 w-full rounded-lg placeholder-gray-400 text-xs focus:outline-none font-bold text-slate-200"
                 placeholder="Search..."
                 onClick={() => setSuggestionHidden(false)}
                 onBlur={(e) => {
@@ -124,8 +124,8 @@ export default function Navbar({ page }) {
                     <li
                       className={
                         index === suggestion.length - 1
-                          ? "text-white p-3 pl-6 pr-8"
-                          : "text-white p-3 pl-6 pr-8 border-b border-dotted"
+                          ? "text-white p-2 pl-4 pr-4 md:p-3 md:pl-6 md:pr-8 lg:p-3 lg:pl-6 lg:pr-8 xl:p-3 xl:pl-6 xl:pr-8"
+                          : "text-white p-2 pl-4 pr-4 md:p-3 md:pl-6 md:pr-8 lg:p-3 lg:pl-6 lg:pr-8 xl:p-3 xl:pl-6 xl:pr-8 border-b border-dotted"
                       }
                       id="suggestion"
                       tabIndex="0"
@@ -134,10 +134,10 @@ export default function Navbar({ page }) {
                       <Link href={item.url} passHref>
                         <a onClick={clearSuggestion}>
                           <div className="hover:cursor-pointer">
-                            <p className="font-bold mb-1">
+                            <p className="font-bold text-sm md:text-base lg:text-base xl:text-base mb-1 truncate">
                               {truncate(item.name, 30, "...")}
                             </p>
-                            <p className="text-sm text-gray-400">
+                            <p className="md:text-sm lg:text-sm xl:text-sm text-xs text-gray-400">
                               Released: {item.year}
                             </p>
                           </div>
@@ -150,7 +150,7 @@ export default function Navbar({ page }) {
             </form>
           </div>
           <ul
-            className="flex flex-row space-x-8 text-sm font-medium flex-1 ml-24"
+            className="md:flex lg:flex xl:flex flex-row space-x-8 text-sm font-medium flex-1 ml-24 hidden"
             id="sec"
           >
             <li>

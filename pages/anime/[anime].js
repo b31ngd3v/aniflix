@@ -27,6 +27,33 @@ export default function Anime({ data }) {
       }
       eps.reverse();
       setEpisodes(eps);
+      var { img, year } = await (
+        await fetch(data.info.replace("/info", "/api/info"))
+      ).json();
+      var continueWatching = JSON.parse(
+        window.localStorage.getItem("continue")
+      );
+      if (continueWatching === null) {
+        continueWatching = [];
+      }
+      continueWatching = continueWatching.filter(
+        (item) => item.name !== data.anime
+      );
+      continueWatching.unshift({
+        name: data.anime,
+        url:
+          "/anime" +
+          data.urlSource
+            .split("?anime=")[0]
+            .split("/anime")[1]
+            .replace(".json", ""),
+        year,
+        img,
+      });
+      window.localStorage.setItem(
+        "continue",
+        JSON.stringify(continueWatching.slice(0, 6))
+      );
     }
     a();
   }, [data]);
@@ -180,6 +207,7 @@ export async function getServerSideProps(context) {
         .attrs.href.replace("/category", "/info"),
       category: soup.find("div", "anime_video_body_cate").find("a").text,
       currentEpisode,
+      urlSource: context.req.url,
       url: urlAttack,
       videoData: { type: "video", sources: videoDataList },
     };

@@ -79,6 +79,110 @@ nav {
   background-color: #003cff !important;
 }
 
+@media (max-width: 640px) {
+  #nprogress .spinner {
+    margin-top: 4px;
+    margin-right: 5px;
+  }
+  #poster {
+    max-width: unset !important;
+    height: unset !important;
+  }
+  #info-holder {
+    padding-bottom: 28px;
+  }
+  #hero {
+    height: 270px !important;
+    margin-bottom: 23px;
+  }
+  #description {
+    width: 310px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  #player-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  #listinfo {
+    font-size: 19px !important;
+  }
+  #holder {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    margin-bottom: 10px;
+  }
+  #item-name {
+    width: 154px;
+  }
+  #episode {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .plyr--full-ui {
+    width: 100% !important;
+    border-radius: 6px 6px 0 0 !important;
+  }
+}
+
+@media only screen and (max-width: 1794px) {
+  #episode {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1641px) {
+  #episode {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1491px) {
+  #episode {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1335px) {
+  #episode {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1185px) {
+  #episode {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1132px) {
+  #episode {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 882px) {
+  #episode {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1862px) {
+  #holder {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1570px) {
+  #holder {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
 @media only screen and (max-width: 1300px) {
   #holder {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -97,17 +201,8 @@ nav {
   }
 }
 
-@media only screen and (max-width: 880px) {
-  body {
-    display: none;
-  }
-}
-
 .plyr--full-ui {
-  max-width: 900px;
-  max-height: 519px;
   width: 90vw;
-  height: 50.85vw;
   border-radius: 6px 0 0 6px;
 }
 

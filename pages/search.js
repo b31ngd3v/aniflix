@@ -13,7 +13,7 @@ export default function search({ keyword, response, next, page }) {
         <Navbar />
         <div className="pb-16">
           <List pageTitle={`Search result for "${keyword}"`} data={response} />
-          <div className="flex justify-between mx-9 mb-8 relative -inset-y-3">
+          <div className="flex justify-between mx-9 md:mb-8 lg:mb-8 xl:mb-8 mb-2 relative md:mt-0 lg:mt-0 xl:mt-0 mt-6 -inset-y-3">
             {page === 1 ? (
               <div
                 className="hover:cursor-pointer"

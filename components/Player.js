@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaGripLinesVertical } from "react-icons/fa";
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
@@ -15,7 +15,6 @@ export default function Player({
 }) {
   const [previous, setPrevious] = useState("");
   const [next, setNext] = useState("");
-  const ref = useRef();
   const options = {
     autoplay: true,
     controls: [
@@ -89,26 +88,32 @@ export default function Player({
   };
   return (
     <>
-      <div className="m-10 rounded-lg flex bg-gray-800 ">
-        <Plyr source={videoData} options={options} ref={ref} />
+      <div className="md:m-10 lg:m-10 xl:m-10 m-2 rounded-lg md:flex lg:flex xl:flex bg-gray-800 ">
+        <Plyr source={videoData} options={options} />
         <div className="flex flex-col flex-1">
           <p
             style={{ fontSize: 20 }}
-            className="text-white font-semibold m-5 mx-6 mt-4 w-72"
+            id="player-title"
+            className="text-white font-semibold md:my-5 md:mx-6 md:mt-4 md:w-72 lg:my-5 lg:mx-6 lg:mt-4 lg:w-72 xl:my-5 xl:mx-6 xl:mt-4 xl:w-72 mx-5 my-3"
           >
             {truncate(name, 90, "...")}
           </p>
-          <div style={{ maxWidth: 436 }} className="flex mx-6 mb-2">
+          <div
+            style={{ maxWidth: 436 }}
+            className="flex md:mx-6 lg:mx-6 xl:mx-6 mx-5 mb-2"
+          >
             <p className="text-white text-sm">
               <span className="text-gray-400 text-sm mr-2">Anime info:</span>
-              <Link href={info}>{anime}</Link>
+              <Link href={info === undefined ? "#" : info}>
+                <span className="hover:cursor-pointer">{anime}</span>
+              </Link>
             </p>
           </div>
-          <div className="flex mx-6 mb-2">
+          <div className="flex md:mx-6 lg:mx-6 xl:mx-6 mx-5 mb-2">
             <p className="text-gray-400 text-sm mr-2">Type:</p>
             <p className="text-white text-sm">{category}</p>
           </div>
-          <div className="flex justify-evenly h-full mb-8 items-end">
+          <div className="flex md:justify-evenly lg:justify-evenly xl:justify-evenly justify-between md:mx-0 lg:mx-0 xl:mx-0 mx-5 h-full md:mt-0 lg:mt-0 xl:mt-0 mt-3 md:mb-8 lg:mb-8 xl:mb-8 mb-5 items-end">
             {!previous ? (
               <div
                 className="hover:cursor-pointer"
@@ -154,13 +159,16 @@ export default function Player({
           </div>
         </div>
       </div>
-      <div className="flex place-items-center m-7 my-6 mb-5">
+      <div className="flex place-items-center md:mx-7 lg:mx-7 xl:mx-7 mx-1 md:my-6 xl:my-6 lg:my-6 md:mb-5 lg:mb-5 xl:mb-5 mt-5 mb-4">
         <FaGripLinesVertical size={28} color="#0251E5" />
         <p style={{ fontSize: 20 }} className="text-white font-semibold">
           Episodes
         </p>
       </div>
-      <div className="bg-gray-800 ml-9 mr-9 rounded-lg mb-12 p-5 flex-wrap grid grid-cols-8">
+      <div
+        id="episode"
+        className="bg-gray-800 md:mx-9 lg:mx-9 xl:mx-9 mx-2 rounded-lg mb-12 md:p-5 lg:p-5 xl:p-5 p-3.5 pr-0 flex-wrap grid grid-cols-11"
+      >
         {episodes.map((episode, index) => {
           if (parseInt(currentEpisode) - 1 === index) {
             return (
@@ -177,15 +185,19 @@ export default function Player({
                 key={index}
                 className="rounded-md flex justify-between h-11 px-4 place-items-center mr-4 mb-4 hover:cursor-not-allowed"
               >
-                <p className="text-white font-bold text-sm mr-4">
+                <p className="text-white font-bold md:text-sm lg:text-sm xl:text-sm text-xs md:mr-4 lg:mr-4 xl:mr-4 mr-1">
                   EP
                   {episode.name.length === 1
                     ? ` 0${episode.name}`
                     : ` ${episode.name}`}
                 </p>
                 <div className="flex">
-                  <p className="text-gray-200 mr-2 text-sm">|</p>
-                  <p className="text-gray-200 text-sm">{episode.type}</p>
+                  <p className="text-gray-200 md:mr-2 lg:mr-2 xl:mr-2 mr-1 md:text-sm lg:text-sm xl:text-sm text-xs">
+                    |
+                  </p>
+                  <p className="text-gray-200 md:text-sm lg:text-sm xl:text-sm text-xs">
+                    {episode.type}
+                  </p>
                 </div>
               </div>
             );
@@ -197,15 +209,19 @@ export default function Player({
                   id="episodes"
                   className="rounded-md flex justify-between h-11 px-4 place-items-center mr-4 mb-4 hover:cursor-pointer"
                 >
-                  <p className="text-white text-sm mr-4">
+                  <p className="text-white md:text-sm lg:text-sm xl:text-sm text-xs md:mr-4 lg:mr-4 xl:mr-4 mr-1">
                     EP
                     {episode.name.length === 1
                       ? ` 0${episode.name}`
                       : ` ${episode.name}`}
                   </p>
                   <div className="flex">
-                    <p className="text-gray-400 mr-2 text-sm">|</p>
-                    <p className="text-gray-400 text-sm">{episode.type}</p>
+                    <p className="text-gray-400 md:mr-2 lg:mr-2 xl:mr-2 mr-1 md:text-sm lg:text-sm xl:text-sm text-xs">
+                      |
+                    </p>
+                    <p className="text-gray-400 md:text-sm lg:text-sm xl:text-sm text-xs">
+                      {episode.type}
+                    </p>
                   </div>
                 </div>
               </Link>

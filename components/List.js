@@ -12,22 +12,36 @@ export default function List({ pageTitle, data }) {
   };
   return (
     <>
-      <div className="flex place-items-center m-7">
+      <div className="flex place-items-center md:m-7 lg:m-7 xl:m-7 m-6 mb-4 ml-0 mt-3">
         <FaGripLinesVertical size={28} color="#0251E5" />
-        <p style={{ fontSize: 20 }} className="text-white font-semibold">
+        <p
+          style={{ fontSize: 20 }}
+          id="listinfo"
+          className="text-white font-semibold"
+        >
           {pageTitle}
         </p>
       </div>
-      <div id="holder" className="mb-7 ml-9 mr-5 grid grid-cols-5">
+      <div
+        id="holder"
+        className="mb-7 md:ml-9 lg:ml-9 xl:ml-9 ml-2 md:mr-5 lg:mr-5 xl:mr-5 mr-0 grid grid-cols-7"
+      >
         {data.map((item, index) => {
           return (
             <Link key={index} href={item.url} passHref>
-              <div className="bg-gray-800 max-w-min rounded-md w-60 mb-4 hover:cursor-pointer">
-                <img src={item.img} className="h-80 w-60 rounded-t-md" alt="" />
-                <p className="w-56 font-semibold text-white m-4 mt-2.5 mb-0">
+              <div className="bg-gray-800 max-w-min rounded-md w-60 md:mb-5 lg:mb-5 xl:mb-5 mb-3 hover:cursor-pointer">
+                <img
+                  src={item.img}
+                  className="md:h-80 md:w-60 lg:h-80 lg:w-60 xl:h-80 xl:w-60 h-56 w-44 rounded-t-md"
+                  alt=""
+                />
+                <p
+                  id="item-name"
+                  className="w-56 truncate font-semibold md:text-base lg:text-base xl:text-base text-sm text-white m-4 mt-2.5 mb-0"
+                >
                   {truncate(item.name, 27, "...")}
                 </p>
-                <p className="text-gray-400 text-sm pl-4 pt-1 pb-3">
+                <p className="text-gray-400 md:text-sm lg:text-sm xl:text-sm text-xs pl-4 pt-1 pb-3">
                   Released: {item.year}
                 </p>
               </div>
