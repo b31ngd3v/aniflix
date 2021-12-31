@@ -98,7 +98,7 @@ export default function Navbar({ page }) {
                 style={{ backgroundColor: "rgb(34, 51, 68)" }}
                 value={search}
                 onChange={handleChange}
-                className="block md:p-3 md:pl-10 lg:p-3 lg:pl-10 xl:p-3 xl:pl-10 pl-9 p-2.5 w-full rounded-lg placeholder-gray-400 text-xs focus:outline-none font-bold text-slate-200"
+                className="block md:p-3 md:pl-10 lg:p-3 lg:pl-10 xl:p-3 xl:pl-10 pl-9 p-3 w-full rounded-lg placeholder-gray-400 text-xs focus:outline-none font-bold text-slate-200"
                 placeholder="Search..."
                 onClick={() => setSuggestionHidden(false)}
                 onBlur={(e) => {

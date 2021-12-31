@@ -75,6 +75,33 @@ export default function Player({
     a();
   }, [episodes, currentEpisode]);
 
+  const attachEventHandler = () => {
+    try {
+      document
+        .getElementsByClassName("plyr__controls__item plyr__control")[3]
+        .addEventListener("click", rotate);
+      if (document.getElementsByTagName("video")[0].attributes.src != "") {
+        clearInterval(intervalId);
+      }
+    } catch {}
+  };
+
+  try {
+    var intervalId = window.setInterval(attachEventHandler, 500);
+  } catch {}
+
+  const getOppositeOrientation = () => {
+    const { type } = screen.orientation;
+    return type.startsWith("portrait") ? "landscape" : "portrait";
+  };
+
+  const rotate = async () => {
+    try {
+      const newOrientation = getOppositeOrientation();
+      await screen.orientation.lock(newOrientation);
+    } catch {}
+  };
+
   const truncate = (str, max, suffix) => {
     if (str === undefined) {
       return undefined;
