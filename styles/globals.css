@@ -102,6 +102,16 @@ nav {
   }
 }
 
+@media (max-width: 400px) {
+  #list-skeleton {
+    width: 165px;
+    height: 220px;
+  }
+  #item-name {
+    max-width: 130px;
+  }
+}
+
 @media (max-width: 640px) {
   #nprogress .spinner {
     margin-top: 4px;

@@ -31,7 +31,10 @@ export default function List({ pageTitle, data }) {
           return (
             <Link key={index} href={item.url} passHref>
               <div className="bg-gray-800 max-w-min rounded-md w-60 md:mb-5 lg:mb-5 xl:mb-5 mb-3 hover:cursor-pointer">
-                <div className="md:h-80 md:w-60 lg:h-80 lg:w-60 xl:h-80 xl:w-60 h-64 w-48 rounded-t-md">
+                <div
+                  id="list-skeleton"
+                  className="md:h-80 md:w-60 lg:h-80 lg:w-60 xl:h-80 xl:w-60 h-64 w-48 rounded-t-md"
+                >
                   <Image
                     src={item.img}
                     width={240}
