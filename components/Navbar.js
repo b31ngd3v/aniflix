@@ -208,7 +208,7 @@ export default function Navbar({ page }) {
           </ul>
         </div>
       </nav>
-      <div style={{ height: 60 }}></div>
+      <div id="space" style={{ height: 60 }}></div>
     </>
   );
 }

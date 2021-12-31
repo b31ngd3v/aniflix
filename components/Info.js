@@ -34,10 +34,10 @@ export default function Info({
           <img
             src={img}
             alt=""
-            className="md:rounded-l-lg lg:rounded-l-lg xl:rounded-l-lg md:rounded-r-none lg:rounded-r-none xl:rounded-r-none rounded-t-lg w-full h-full"
+            className="rounded-l-lg md:block lg:block xl:block hidden w-full h-full"
           />
         </div>
-        <div>
+        <div className="md:pt-0 lg:pt-0 xl:pt-0 pt-px">
           <p
             style={{ fontSize: 24 }}
             className="text-white font-semibold m-8 md:ml-10 lg:ml-10 xl:ml-10 ml-5 md:my-6 lg:my-6 xl:my-6 my-3 truncate"

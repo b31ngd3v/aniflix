@@ -32,7 +32,7 @@ export default function List({ pageTitle, data }) {
               <div className="bg-gray-800 max-w-min rounded-md w-60 md:mb-5 lg:mb-5 xl:mb-5 mb-3 hover:cursor-pointer">
                 <img
                   src={item.img}
-                  className="md:h-80 md:w-60 lg:h-80 lg:w-60 xl:h-80 xl:w-60 h-56 w-44 rounded-t-md"
+                  className="md:h-80 md:w-60 lg:h-80 lg:w-60 xl:h-80 xl:w-60 h-60 w-48 rounded-t-md"
                   alt=""
                 />
                 <p
