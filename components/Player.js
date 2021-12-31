@@ -131,7 +131,7 @@ export default function Player({
           >
             <p className="text-white text-sm">
               <span className="text-gray-400 text-sm mr-2">Anime info:</span>
-              <Link href={info === undefined ? "#" : info}>
+              <Link href={info === undefined ? "#" : info} passHref>
                 <span className="hover:cursor-pointer">{anime}</span>
               </Link>
             </p>
