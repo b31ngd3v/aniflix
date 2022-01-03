@@ -1,0 +1,42 @@
+name: Deploy
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build
+    - name: Copy repository contents via scp
+      uses: appleboy/scp-action@master
+      env:
+        HOST: 3.15.80.152
+        USERNAME: b31ngd3v
+        PORT: 22
+        KEY: ${{ secrets.id_rsa }}
+      with:
+        source: "."
+        target: "/home/b31ngd3v/aniflix"
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.2
+      with:
+        key: ${{secrets.id_rsa}}
+        host: 3.15.80.152
+        username: b31ngd3v
+        script: |
+          docker kill $(docker ps -q)
+          cd /home/b31ngd3v/aniflix
+          ./start.sh
