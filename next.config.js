@@ -11,4 +11,7 @@ module.exports = withPWA({
   images: {
     domains: ["gogocdn.net"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 });
