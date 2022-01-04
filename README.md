@@ -10,9 +10,12 @@ Stream animes for free without any interruption.
 ## Preview
 
 <p>
-<img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/2022-01-04_15-51.png?token=APN4FWA5AHVP2MGQYWPMOF3B2QQPA" alt="Desktop view" height=385px />
+<img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/2022-01-04_15-51.png?token=APN4FWA5AHVP2MGQYWPMOF3B2QQPA" alt="Desktop view" height=402px />
 &nbsp;
-<img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/Screenshot_20220104-155319_Chrome.jpg?token=APN4FWHTUK6PRLBRCT43DNDB2QQPA" alt="Mobile view" height=400px />
+<img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/Screenshot_20220104-155319_Chrome.jpg" alt="Mobile view" height=440px />&nbsp;
+<img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/Screenshot_20220104-160757_Chrome.jpg" alt="Mobile view" height=440px />&nbsp;
+<img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/Screenshot_20220104-160823_Chrome.jpg" alt="Mobile view" height=440px />&nbsp;
+<img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/Screenshot_20220104-160837_Chrome.jpg" alt="Mobile view" height=440px />
 </p>
 
 Main Server : https://aniflix.eu.org (Replit)
