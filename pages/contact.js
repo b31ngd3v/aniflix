@@ -8,7 +8,7 @@ export default function Terms() {
     <>
       <Header title={`Aniflix - Cotact`} />
       <div className="min-h-screen relative">
-        <Navbar page="terms" />
+        <Navbar page="contact" />
         <div className="pb-16">
           <div className="flex place-items-center m-7 mb-6 mt-6">
             <FaGripLinesVertical size={28} color="#0251E5" />
