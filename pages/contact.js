@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 export default function Terms() {
   return (
     <>
-      <Header title={`Aniflix - Cotact`} />
+      <Header title={`Aniflix - Contact`} />
       <div className="min-h-screen relative">
         <Navbar page="contact" />
         <div className="pb-16">
