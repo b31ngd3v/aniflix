@@ -49,9 +49,15 @@ export default function List({ pageTitle, data }) {
                 >
                   {truncate(item.name, 27, "...")}
                 </p>
-                <p className="text-gray-400 md:text-sm lg:text-sm xl:text-sm text-xs pl-4 pt-1 pb-3">
-                  Released: {item.year}
-                </p>
+                {item.year ? (
+                  <p className="text-gray-400 md:text-sm lg:text-sm xl:text-sm text-xs pl-4 pt-1 pb-3">
+                    Released: {item.year}
+                  </p>
+                ) : (
+                  <p className="text-gray-400 md:text-sm lg:text-sm xl:text-sm text-xs pl-4 pt-1 pb-3">
+                    Episode: {item.episode}
+                  </p>
+                )}
               </div>
             </Link>
           );

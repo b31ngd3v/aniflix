@@ -27,7 +27,7 @@ export default function Anime({ data }) {
       }
       eps.reverse();
       setEpisodes(eps);
-      var { img, year } = await (
+      var { img } = await (
         await fetch(data.info.replace("/info", "/api/info"))
       ).json();
       var continueWatching = JSON.parse(
@@ -47,7 +47,7 @@ export default function Anime({ data }) {
             .split("?anime=")[0]
             .split("/anime")[1]
             .replace(".json", ""),
-        year,
+        episode: data.currentEpisode,
         img,
       });
       window.localStorage.setItem(
