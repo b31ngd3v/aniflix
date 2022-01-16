@@ -8,7 +8,13 @@ import { useEffect, useState } from "react";
 
 export default function Home({ hero, popular, favourite }) {
   const [continueWatching, setContinueWatching] = useState([]);
+  const [recentlyAdded, setRecentlyAdded] = useState([]);
   useEffect(() => {
+    async function a() {
+      var response = await (await fetch("/api/recent")).json();
+      setRecentlyAdded(response.response);
+    }
+    a();
     var continueWatchingData = JSON.parse(
       window.localStorage.getItem("continue")
     );
@@ -34,6 +40,11 @@ export default function Home({ hero, popular, favourite }) {
           ""
         ) : (
           <List pageTitle="Continue watching" data={continueWatching} />
+        )}
+        {recentlyAdded.length === 0 ? (
+          ""
+        ) : (
+          <List pageTitle="Recently added" data={recentlyAdded} />
         )}
         <List pageTitle="Most popular" data={popular} />
         <div className="pb-16">
