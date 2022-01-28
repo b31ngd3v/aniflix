@@ -104,7 +104,7 @@ export async function getServerSideProps(context) {
       return str;
     }
     function generateEncryptAjaxParameters($, id) {
-      const value6 = $("script[data-name=\x27ts\x27]").data("value");
+      const value6 = $("script[data-name=\x27ts\x27]").attr("data-value");
       const value5 = $("[name='crypto']").attr("content");
       const value1 = CryptoJS.enc.Utf8.stringify(
         CryptoJS.AES.decrypt(
