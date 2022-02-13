@@ -5,9 +5,9 @@ export default async function handler(req, res) {
     var keyword = req.query.keyword;
     if (req.query.page) {
       var page = req.query.page;
-      var url = `https://www2.gogoanime.cm/search.html?keyword=${keyword}&page=${page}`;
+      var url = `${process.env.BASE}/search.html?keyword=${keyword}&page=${page}`;
     } else {
-      var url = `https://www2.gogoanime.cm/search.html?keyword=${keyword}`;
+      var url = `${process.env.BASE}/search.html?keyword=${keyword}`;
     }
     var next = false;
     var response = await fetch(url);

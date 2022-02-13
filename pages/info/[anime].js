@@ -54,7 +54,7 @@ export async function getServerSideProps(context) {
   url = new URL(url).pathname;
   var anime = url.substring(url.lastIndexOf("/") + 1).replace(".json", "");
   try {
-    var url = `https://www2.gogoanime.cm/category/${anime}`;
+    var url = `${process.env.BASE}/category/${anime}`;
     var response = await fetch(url);
     response = await response.text();
     var soup = new JSSoup(response);

@@ -151,7 +151,7 @@ export async function getServerSideProps(context) {
       }
       return $;
     }
-    var urlTarget = `https://www2.gogoanime.cm/${anime}`;
+    var urlTarget = `${process.env.BASE}/${anime}`;
     var response = await fetch(urlTarget);
     response = await response.text();
     var soup = new JSSoup(response);

@@ -78,10 +78,10 @@ export async function getServerSideProps(context) {
   try {
     if (keyword) {
       if (page) {
-        var url = `https://www2.gogoanime.cm/search.html?keyword=${keyword}&page=${page}`;
+        var url = `${process.env.BASE}/search.html?keyword=${keyword}&page=${page}`;
       } else {
         page = 1;
-        var url = `https://www2.gogoanime.cm/search.html?keyword=${keyword}`;
+        var url = `${process.env.BASE}/search.html?keyword=${keyword}`;
       }
       var next = false;
       var response = await fetch(url);

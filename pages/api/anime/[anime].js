@@ -3,7 +3,7 @@ import JSSoup from "jssoup";
 export default async function handler(req, res) {
   try {
     const { anime } = req.query;
-    var url = `https://www2.gogoanime.cm/${anime}`;
+    var url = `${process.env.BASE}/${anime}`;
     var response = await fetch(url);
     response = await response.text();
     var soup = new JSSoup(response);
