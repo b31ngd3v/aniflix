@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaGripLinesVertical } from "react-icons/fa";
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
+import Hls from "hls.js";
 
 export default function Player({
   name,
@@ -11,10 +12,11 @@ export default function Player({
   category,
   episodes,
   currentEpisode,
-  videoData,
+  videoUrl,
 }) {
   const [previous, setPrevious] = useState("");
   const [next, setNext] = useState("");
+  const ref = useRef(null);
   const options = {
     autoplay: true,
     controls: [
@@ -60,6 +62,14 @@ export default function Player({
     },
   };
   useEffect(() => {
+    const loadVideo = async () => {
+      const video = document.getElementById("plyr");
+      var hls = new Hls();
+      hls.loadSource(videoUrl);
+      hls.attachMedia(video);
+      ref.current.plyr.media = video;
+    };
+    loadVideo();
     async function a() {
       if (currentEpisode > 1 && episodes.length != 0) {
         setPrevious(episodes[currentEpisode - 2].url);
@@ -73,7 +83,7 @@ export default function Player({
       }
     }
     a();
-  }, [episodes, currentEpisode]);
+  }, [episodes, currentEpisode, videoUrl]);
 
   const attachEventHandler = () => {
     try {
@@ -116,7 +126,7 @@ export default function Player({
   return (
     <>
       <div className="md:m-10 lg:m-10 xl:m-10 m-2 rounded-lg md:flex lg:flex xl:flex bg-gray-800 ">
-        <Plyr source={videoData} options={options} />
+        <Plyr id="plyr" source={{}} ref={ref} options={options} />
         <div className="flex flex-col flex-1">
           <p
             style={{ fontSize: 20 }}

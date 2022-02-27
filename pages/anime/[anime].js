@@ -2,11 +2,8 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Navbar from "../../components/Navbar";
 import JSSoup from "jssoup";
-import Player from "../../components/Player";
 import { useEffect, useState } from "react";
-import cheerio from "cheerio";
-import CryptoJS from "crypto-js";
-import url from "url";
+import Player from "../../components/Player";
 
 export default function Anime({ data }) {
   const [episodes, setEpisodes] = useState([]);
@@ -71,7 +68,7 @@ export default function Anime({ data }) {
             category={data.category}
             currentEpisode={data.currentEpisode}
             episodes={episodes}
-            videoData={data.videoData}
+            videoUrl={data.videoData}
           />
         </div>
         <Footer />
@@ -90,69 +87,10 @@ export async function getServerSideProps(context) {
 
     const USERAGENT =
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36";
-    function getRandomInt(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    function f_random(length) {
-      var i = length,
-        str = "";
-      while (i > 0x0) {
-        i--, (str += getRandomInt(0, 9));
-      }
-      return str;
-    }
-    function generateEncryptAjaxParameters($, id) {
-      const value6 = $("script[data-name=\x27ts\x27]").attr("data-value");
-      const value5 = $("[name='crypto']").attr("content");
-      const value1 = CryptoJS.enc.Utf8.stringify(
-        CryptoJS.AES.decrypt(
-          $("script[data-name=\x27crypto\x27]").data("value"),
-          CryptoJS.enc.Utf8.parse(value6.toString() + value6.toString()),
-          {
-            iv: CryptoJS.enc.Utf8.parse(value6),
-          }
-        )
-      );
-      const value4 = CryptoJS.AES.decrypt(
-        value5,
-        CryptoJS.enc.Utf8.parse(value1),
-        {
-          iv: CryptoJS.enc.Utf8.parse(value6),
-        }
-      );
-      const value3 = CryptoJS.enc.Utf8.stringify(value4);
-      const value2 = f_random(16);
-      return (
-        "id=" +
-        CryptoJS.AES.encrypt(id, CryptoJS.enc.Utf8.parse(value1), {
-          iv: CryptoJS.enc.Utf8.parse(value2),
-        }).toString() +
-        "&time=" +
-        "00" +
-        value2 +
-        "00" +
-        value3.substring(value3.indexOf("&"))
-      );
-    }
-    async function fetchAndParse(fetchParams) {
-      const $ = await fetch(fetchParams.url, {
-        headers: fetchParams.headers,
-      })
-        .then((res) => res.text())
-        .then((body) => cheerio.load(body));
-      if (
-        $("title")
-          .text()
-          .match(/Access denied \| .* used Cloudflare to restrict access/)
-      ) {
-        throw new Error("Cloudflare detected");
-      }
-      return $;
-    }
     var urlTarget = `${process.env.BASE}/${anime}`;
-    var response = await fetch(urlTarget);
+    var response = await fetch(urlTarget, {
+      headers: { "user-agent": USERAGENT },
+    });
     response = await response.text();
     var soup = new JSSoup(response);
     var allUl = soup.findAll("ul");
@@ -168,33 +106,33 @@ export async function getServerSideProps(context) {
       soup.find("input", "default_ep").attrs.value
     }&alias=${anime}`;
     var currentEpisode = parseInt(soup.find("input", "default_ep").attrs.value);
-    var src = `https:${soup.find("iframe").attrs.src}`;
-    var embed = url.parse(src, true);
-    var $ = await fetchAndParse({
-      url: src,
-      headers: {
-        "User-Agent": USERAGENT,
-      },
+    var embedLink = response
+      .match(`.*<a href="#" rel="100" data-video=".*`)[0]
+      .trim();
+    embedLink = embedLink.replace(
+      `<a href="#" rel="100" data-video="`,
+      "https:"
+    );
+    embedLink = embedLink.substr(0, embedLink.search(`"`));
+    var response = await fetch(embedLink, {
+      headers: { "user-agent": USERAGENT },
     });
-    var params = generateEncryptAjaxParameters($, embed.query.id);
-    var videoData = await fetch(
-      `${embed.protocol}//${embed.hostname}/encrypt-ajax.php?${params}`,
-      {
-        headers: {
-          "User-Agent": USERAGENT,
-          Referer: src,
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      }
-    ).then((resp) => resp.json());
-    var videoDataList = [];
-    for (var i = 0; i < videoData.source.length; i++) {
-      videoDataList.push({
-        src: videoData.source[i].file,
-        type: "video/mp4",
-        size: parseInt(videoData.source[i].label.split(" ")[0]),
-      });
-    }
+    response = await response.text();
+    var videoData = response.match("s*sources.*")[0].trim();
+    videoData = videoData.substring(
+      videoData.search("https"),
+      videoData.search("',")
+    );
+    videoData = videoData
+      ? `/api/proxy/${videoData.replace("https://", "")}`
+      : null;
+
+    // gogoanime for some reason only shows 720p video links
+    // replace the videoData so that all qualities can be streamed
+    videoData = videoData
+      ? videoData.replace(/\.[\d]{3,4}\.m3u8/, ".m3u8")
+      : null;
+
     var data = {
       name: soup
         .find("div", "anime_video_body")
@@ -209,7 +147,7 @@ export async function getServerSideProps(context) {
       currentEpisode,
       urlSource: context.req.url,
       url: urlAttack,
-      videoData: { type: "video", sources: videoDataList },
+      videoData,
     };
     return { props: { data } };
   } catch {
