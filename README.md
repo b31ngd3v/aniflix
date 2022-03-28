@@ -5,7 +5,6 @@ Stream animes for free without any interruption.
 - Free $0
 - Ad Free
 - Open Source
-- 99.89% uptime
 
 ## Preview
 
@@ -17,10 +16,6 @@ Stream animes for free without any interruption.
 <img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/Screenshot_20220104-160823_Chrome.jpg" alt="Mobile view" height=430px />&nbsp;
 <img src="https://raw.githubusercontent.com/b31ngd3v/aniflix/master/.github/images/Screenshot_20220104-160837_Chrome.jpg" alt="Mobile view" height=430px />
 </p>
-
-Main Server : https://aniflix.eu.org (Replit)
-
-Backup Server : https://www.aniflix.eu.org (AWS)
 
 ## New Features!
 
